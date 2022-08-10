@@ -1,19 +1,30 @@
-// Problema 4
+// Problema 5
 
-const esUnTriangulo = (a, b, c) => {
+const array = [1, 5, 9, 2, 15, 9, 10, 12];
 
-    const suma1 = a + b;
-    const suma2 = a + c;
-    const suma3 = b + c;
+const obtenerDosMayores = (array) => {
 
-    if(a < 0 || b < 0 || c < 0){
-        console.log("Error")
-    }else{
-        if(suma1 > c || suma2 > b || suma3 > a){
-            console.log("Se puede construir")
-        }else{
-            console.log("No se puede construir")
+    const newArray = [];
+
+    let aux = getMayor(array);
+    
+    for (let i = 0; i < array.length; i++) {
+        if(array[i] === aux){
+            delete array[i];
         }
     }
+    newArray[0] = aux;
+    newArray[1] = getMayor(array);
+
+    return newArray
 }
-esUnTriangulo(45,70,1)
+const getMayor = (array) =>{
+    let aux = array[0];
+    for (let i = 0; i < array.length; i++) {
+        if(array[i] > aux){
+            aux = array[i] 
+        }
+    }
+    return aux;
+}
+console.log(obtenerDosMayores(array))
